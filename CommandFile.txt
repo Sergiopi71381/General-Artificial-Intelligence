@@ -1,0 +1,59 @@
+//September 30, 2017
+//This is a command file for running the causal set code.
+//To create dynamic operation, I will input several files in the causal pair representation, 
+//randomize the array of causal pairs without regard for sources or causal links, and then 
+//input the result in pieces in alternation with partial runs of CML.
+
+
+//START COMMAND FILE
+WorkingDirectory  C:\AMine\MSDev\projects\CppRefactoring5\CausalSetFiles
+OutputFile        C:\AMine\MSDev\projects\CppRefactoring5\CausalSetFiles\OutputFile.txt   //this file is managed by the program
+
+
+//InputCausalSet    Small9_8_00122346,12346578            //length 26-40       6-level hierarchy.
+//InputCausalSet    Small11_10_0112445558,123567789_10    //length 34-78, tot 4080
+//InputCausalSet    Small10_9_012345678,345678999         //length 36-48    has blocks even for max ent permuts
+//InputCausalSet    EuropeanExample                       //length 328-446    33 neurons, 55 links.
+//InputCausalSet    Newton
+//InputCausalSet    ContinualLearning
+InputCausalSet    Visual
+ReportProperties
+
+
+ReadPermutationsFromFile permutations.txt
+
+
+CalculateAdjacencyLevelStructure
+//CalculateConnectedComponents
+//SubsetComponent  0            //Creates a subset of the main causal set that contains component 0.  MAYBE NOT!
+ReportProperties               //Reports the connected components and other basic properties.
+//ReportInlinksOutlinks
+//ReportGlobalLocalIndices
+
+//FindAllLegalPermutations      //Use only for small causal sets.
+//TraceAllLegalPermutations     //traces all legal permutations with their respective lengths.
+//TracePopulationsByMacrostate  //traces all macrostates with their action and population.
+//SelectPermutationsOfLength    40   
+//TraceSelectedPermutations
+
+//FindBlockSystem
+
+InitialPermutation   Sequence   //Random  //Do not use Random! It creates invalid permutations!
+OptimizeWithNeuronSwaps
+//ReportInlinksOutlinks
+ReportProperties               //Reports the connected components and other basic properties.
+
+
+//OptimizeWithBlockSwaps   //not yet implemented
+
+//FindBlockSystem
+
+Exit
+//END COMMAND FILE
+
+
+
+
+
+
+
